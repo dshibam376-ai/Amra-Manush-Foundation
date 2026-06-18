@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Heart, Mail, ExternalLink, ShieldAlert, Award, FileText, Instagram, Facebook, Send, CheckCircle2, AlertCircle } from 'lucide-react';
 import Logo from './Logo';
 import { useLanguage } from '../lib/LanguageContext';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 interface FooterProps {
   onNavigate: (sectionId: string) => void;
@@ -14,6 +15,16 @@ export default function Footer({ onNavigate }: FooterProps) {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleFooterNav = (id: string) => {
+    const path = id === 'hero' ? '/' : `/${id}`;
+    if (location.pathname !== path) {
+      navigate(path);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   const toBnNo = (numStr: string) => {
     if (language !== 'bn') return numStr;
@@ -71,7 +82,7 @@ export default function Footer({ onNavigate }: FooterProps) {
           <div className="md:col-span-4 space-y-4 text-left">
             <div 
               className="flex items-center space-x-2.5 cursor-pointer group"
-              onClick={() => window.open('/', '_blank')}
+              onClick={() => handleFooterNav('hero')}
             >
               <Logo className="h-9 w-9 shrink-0" />
               <span className="font-display font-bold text-base sm:text-lg text-[#0F172A] dark:text-white tracking-tight">
@@ -100,16 +111,16 @@ export default function Footer({ onNavigate }: FooterProps) {
               {language === 'bn' ? 'ন্যাভিগেশন' : 'Navigation'}
             </h4>
             <div className="grid grid-cols-1 gap-2.5 text-xs">
-              <button onClick={() => window.open('/overview', '_blank')} className="text-left text-[#334155] dark:text-slate-300 hover:text-blue-600 transition-colors cursor-pointer whitespace-nowrap">
+              <button onClick={() => handleFooterNav('overview')} className="text-left text-[#334155] dark:text-slate-300 hover:text-blue-600 transition-colors cursor-pointer whitespace-nowrap">
                 {language === 'bn' ? '• ওভারভিউ' : '• Overview'}
               </button>
-              <button onClick={() => window.open('/flagship', '_blank')} className="text-left text-[#334155] dark:text-slate-300 hover:text-blue-600 transition-colors cursor-pointer whitespace-nowrap">
+              <button onClick={() => handleFooterNav('flagship')} className="text-left text-[#334155] dark:text-slate-300 hover:text-blue-600 transition-colors cursor-pointer whitespace-nowrap">
                 {language === 'bn' ? '• আহার ক্যাম্পেইন' : '• Food Campaign'}
               </button>
-              <button onClick={() => window.open('/dashboard', '_blank')} className="text-left text-[#334155] dark:text-slate-300 hover:text-blue-600 transition-colors cursor-pointer whitespace-nowrap">
+              <button onClick={() => handleFooterNav('dashboard')} className="text-left text-[#334155] dark:text-slate-300 hover:text-blue-600 transition-colors cursor-pointer whitespace-nowrap">
                 {language === 'bn' ? '• পরিসংখ্যান' : '• Statistics'}
               </button>
-              <button onClick={() => window.open('/pillars', '_blank')} className="text-left text-[#334155] dark:text-slate-300 hover:text-blue-600 transition-colors cursor-pointer whitespace-nowrap">
+              <button onClick={() => handleFooterNav('pillars')} className="text-left text-[#334155] dark:text-slate-300 hover:text-blue-600 transition-colors cursor-pointer whitespace-nowrap">
                 {language === 'bn' ? '• সামাজিক স্তম্ভ' : '• Social Pillars'}
               </button>
             </div>

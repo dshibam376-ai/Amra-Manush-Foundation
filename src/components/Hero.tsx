@@ -5,6 +5,8 @@ import { IMPACT_COUNTERS } from '../data';
 import Logo from './Logo';
 import AnimatedCounter from './AnimatedCounter';
 import { useLanguage } from '../lib/LanguageContext';
+import { useNavigate } from 'react-router-dom';
+
 // @ts-ignore
 import heroBackground from '../assets/images/hero_kids_background_1781600458576.jpg';
 // @ts-ignore
@@ -18,6 +20,11 @@ export default function Hero({ onNavigate }: HeroProps) {
   const { t } = useLanguage();
   const { scrollY } = useScroll();
   const backgroundY = useTransform(scrollY, [0, 800], ['0%', '20%']);
+  const navigate = useNavigate();
+
+  const handleHeroNav = (id: string) => {
+    navigate(`/${id}`);
+  };
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-44 pb-20">
@@ -61,7 +68,7 @@ export default function Hero({ onNavigate }: HeroProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="inline-flex flex-wrap items-center justify-center gap-x-4 gap-y-2.5 px-5 py-2.5 rounded-full bg-white dark:bg-[#1A2332] border border-blue-600/20 dark:border-cyan-400/30 text-xs text-blue-800 dark:text-cyan-400 font-sans mb-8 max-w-3xl mx-auto shadow-md cursor-pointer"
-          onClick={() => window.open('/transparency', '_blank')}
+          onClick={() => handleHeroNav('transparency')}
           title="View Official Government MSME Certificate"
         >
           {/* National Identity Visuals */}
@@ -123,14 +130,14 @@ export default function Hero({ onNavigate }: HeroProps) {
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20"
         >
           <button
-            onClick={() => window.open('/donate', '_blank')}
+            onClick={() => handleHeroNav('donate')}
             className="w-full sm:w-auto px-8 py-4 rounded-xl bg-[linear-gradient(135deg,#0056D2_0%,#2563EB_50%,#FF9933_100%)] text-white font-bold text-base shadow-xl hover:shadow-blue-500/25 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer font-sans"
           >
             {t('hero.action_donate')} <ChevronRight className="h-5 w-5" />
           </button>
           
           <button
-            onClick={() => window.open('/partnerships', '_blank')}
+            onClick={() => handleHeroNav('partnerships')}
             className="w-full sm:w-auto px-8 py-4 rounded-xl bg-[#FFFFFF] dark:bg-[#1A2332] text-[#0056D2] dark:text-[#3B82F6] font-bold text-base border-2 border-[#E2E8F0] dark:border-[#334155] hover:bg-white dark:hover:bg-[#1e293b] active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer font-sans"
           >
             {t('nav.partnerships')} <Sparkles className="h-4.5 w-4.5" />

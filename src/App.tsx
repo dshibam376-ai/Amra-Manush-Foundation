@@ -1,24 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import Overview from './components/Overview';
-import Members from './components/Members';
-import Flagship from './components/Flagship';
-import Dashboard from './components/Dashboard';
-import Pillars from './components/Pillars';
-import SuccessStories from './components/SuccessStories';
-import Partnerships from './components/Partnerships';
-import Transparency from './components/Transparency';
-import FAQSection from './components/FAQSection';
-import Gallery from './components/Gallery';
-import Volunteer from './components/Volunteer';
-import Donation from './components/Donation';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import ScrollToTop from './components/ScrollToTop';
-import WhatsAppButton from './components/WhatsAppButton';
-import { useLanguage } from './lib/LanguageContext';
-
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -117,6 +97,7 @@ function LandingPage() {
 
 export default function App() {
   const { language } = useLanguage();
+  const navigate = useNavigate();
 
   return (
     <Routes>
@@ -137,7 +118,7 @@ export default function App() {
 
       <Route path="/flagship" element={
         <SectionLayout title={language === 'bn' ? 'একবেলার আহার' : 'Ekbelar Aahar'} subdomain="hunger-relief">
-          <Flagship onDonateClick={() => window.open('/donate', '_blank')} />
+          <Flagship onDonateClick={() => navigate('/donate')} />
         </SectionLayout>
       } />
 
