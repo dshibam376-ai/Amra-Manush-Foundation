@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Hind+Siliguri:wght@500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@layer utilities {
+  .bg-indian-flag {
+    background: linear-gradient(to right, #FF9933 0%, #FF9933 33.3%, #FFFFFF 33.3%, #FFFFFF 66.6%, #138808 66.6%, #138808 100%);
+  }
+  .border-indian-flag {
+    border-image: linear-gradient(to right, #FF9933 0%, #FF9933 33.3%, #FFFFFF 33.3%, #FFFFFF 66.6%, #138808 66.6%, #138808 100%) 1;
+  }
+  .indian-gradient-text {
+    background: linear-gradient(to right, #FF9933, #1A2332, #138808);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .glow-indian-flag {
+    box-shadow: 0 0 20px rgba(255, 153, 51, 0.1), 0 0 20px rgba(19, 136, 8, 0.1);
+  }
+}
+
+:root {
+  --bg-color: #FAFAFA;
+  --text-primary: #111827;
+  --text-secondary: #4B5563;
+  --text-body: #4B5563;
+  --card-bg: #FFFFFF;
+  --border-color: #E5E7EB;
+  --primary-blue: #FF9933;
+  --accent-saffron: #FF9933;
+  --accent-green: #138808;
+  --accent-navy: #000080;
+}
+
+[data-theme='dark'], .dark {
+  --bg-color: #07111F;
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-body: #CBD5E1;
+  --card-bg: #0D1B2A;
+  --border-color: #334155;
+  --primary-blue: #38BDF8;
+  --accent-saffron: #F97316;
+  --accent-green: #10B981;
+  --accent-navy: #60A5FA;
+}
+
+body {
+  background: 
+    radial-gradient(circle at 0% 0%, rgba(255, 153, 51, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 100% 100%, rgba(19, 136, 8, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 100% 0%, rgba(19, 136, 8, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 0% 100%, rgba(255, 153, 51, 0.08) 0%, transparent 40%),
+    #FFFFFF;
+  background-attachment: fixed;
+  background-size: cover;
+  color: var(--text-body);
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.dark body {
+  background: 
+    radial-gradient(circle at 0% 0%, rgba(255, 153, 51, 0.2) 0%, transparent 60%),
+    radial-gradient(circle at 100% 100%, rgba(19, 136, 8, 0.2) 0%, transparent 60%),
+    #050B16;
+  background-attachment: fixed;
+}
+
+@theme {
+  --color-bg: var(--bg-color);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-body: var(--text-body);
+  --color-card-bg: var(--card-bg);
+  --color-border: var(--border-color);
+  --color-primary-blue: var(--primary-blue);
+  --color-accent-saffron: var(--accent-saffron);
+  --color-accent-green: var(--accent-green);
+  --color-accent-navy: var(--accent-navy);
+  --font-sans: "Outfit", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Hind Siliguri", "Noto Sans Devanagari", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+body, main {
+  font-family: var(--font-sans);
+  color: var(--text-body);
+}
+
+section {
+  background: transparent !important;
+}
+
+h1, h2, h3, h4, h5, h6, .serif {
+  font-family: var(--font-display) !important;
+  color: var(--text-primary);
+}
+
+p {
+  color: var(--text-body);
+}
+
+/* Common UI Components */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1rem !important;
+}
+
+.dark .glass-panel {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(30, 41, 59, 0.5);
+}
+
+/* Hardcoded Class Overrides for Flawless Theme Integration */
+.bg-white {
+  background-color: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(8px);
+}
+
+.bg-slate-50, .bg-gray-50 {
+  background-color: rgba(248, 250, 252, 0.75) !important;
+  backdrop-filter: blur(8px);
+}
+
+[data-theme='dark'] .bg-white,
+.dark .bg-white,
+[data-theme='dark'] .bg-slate-50,
+.dark .bg-slate-50,
+[data-theme='dark'] .bg-gray-50,
+.dark .bg-gray-50,
+[data-theme='dark'] .bg-\[\#1A2332\],
+.dark .bg-\[\#1A2332\] {
+  background-color: var(--card-bg) !important;
+  backdrop-filter: none;
+}
+
+[data-theme='dark'] .text-slate-900,
+.dark .text-slate-900,
+[data-theme='dark'] .text-gray-900,
+.dark .text-gray-900,
+[data-theme='dark'] .text-\[\#0F172A\],
+.dark .text-\[\#0F172A\],
+[data-theme='dark'] .text-\[\#1E293B\],
+.dark .text-\[\#1E293B\] {
+  color: var(--text-primary) !important;
+}
+
+[data-theme='dark'] .text-slate-700,
+.dark .text-slate-700,
+[data-theme='dark'] .text-\[\#334155\],
+.dark .text-\[\#334155\] {
+  color: var(--text-body) !important;
+}
+
+[data-theme='dark'] .text-slate-500,
+.dark .text-slate-500,
+[data-theme='dark'] .text-\[\#64748B\],
+.dark .text-\[\#64748B\] {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme='dark'] .border-slate-200,
+.dark .border-slate-200,
+[data-theme='dark'] .border-gray-200,
+.dark .border-gray-200,
+[data-theme='dark'] .border-\[\#E2E8F0\],
+.dark .border-\[\#E2E8F0\] {
+  border-color: var(--border-color) !important;
+}
+
