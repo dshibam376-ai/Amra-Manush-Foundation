@@ -49,7 +49,9 @@ export default function Header({ onNavigate, activeSection, language, setLanguag
   ];
 
   const handleNavClick = (id: string) => {
-    onNavigate(id);
+    // Open the respective route in a new tab to simulate "Professional Site" feel
+    const path = id === 'hero' ? '/' : `/${id}`;
+    window.open(path, '_blank');
     setIsOpen(false);
   };
 
@@ -197,13 +199,13 @@ export default function Header({ onNavigate, activeSection, language, setLanguag
             {/* Action Buttons */}
             <div className="hidden lg:flex items-center space-x-3">
               <button
-                onClick={() => handleNavClick('volunteer')}
+                onClick={() => window.open('/volunteer', '_blank')}
                 className="px-4 py-2 text-sm font-medium text-slate-200 hover:text-white hover:bg-white/10 border border-slate-500/50 rounded-md transition-all cursor-pointer"
               >
                 {t('hero.action_volunteer')}
               </button>
               <button
-                onClick={() => handleNavClick('donate')}
+                onClick={() => window.open('/donate', '_blank')}
                 className="relative group overflow-hidden px-5 py-2 rounded-md text-sm font-semibold bg-[linear-gradient(135deg,#0F766E_0%,#14B8A6_50%,#F59E0B_100%)] text-white shadow-md group-hover:shadow-lg hover:brightness-105 active:scale-98 transition-all cursor-pointer"
               >
                 <span className="relative z-10 flex items-center gap-1.5">
@@ -259,13 +261,13 @@ export default function Header({ onNavigate, activeSection, language, setLanguag
                   <ThemeToggle />
                 </div>
                 <button
-                  onClick={() => handleNavClick('volunteer')}
+                  onClick={() => window.open('/volunteer', '_blank')}
                   className="w-full py-2.5 text-center text-sm font-medium text-slate-200 bg-white/10 border border-white/10 rounded-md hover:bg-white/20 transition-all font-sans"
                 >
                   {t('hero.action_volunteer')}
                 </button>
                 <button
-                  onClick={() => handleNavClick('donate')}
+                  onClick={() => window.open('/donate', '_blank')}
                   className="w-full py-2.5 text-center text-sm font-semibold bg-[linear-gradient(135deg,#0F766E_0%,#14B8A6_50%,#F59E0B_100%)] text-white rounded-md shadow hover:brightness-105 transition-all flex items-center justify-center gap-1.5 font-sans"
                 >
                   <Heart className="h-4 w-4 fill-white" />

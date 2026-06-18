@@ -71,7 +71,7 @@ export default function Footer({ onNavigate }: FooterProps) {
           <div className="md:col-span-4 space-y-4 text-left">
             <div 
               className="flex items-center space-x-2.5 cursor-pointer group"
-              onClick={() => onNavigate('hero')}
+              onClick={() => window.open('/', '_blank')}
             >
               <Logo className="h-9 w-9 shrink-0" />
               <span className="font-display font-bold text-base sm:text-lg text-[#0F172A] dark:text-white tracking-tight">
@@ -100,16 +100,16 @@ export default function Footer({ onNavigate }: FooterProps) {
               {language === 'bn' ? 'ন্যাভিগেশন' : 'Navigation'}
             </h4>
             <div className="grid grid-cols-1 gap-2.5 text-xs">
-              <button onClick={() => onNavigate('overview')} className="text-left text-[#334155] dark:text-slate-300 hover:text-blue-600 transition-colors cursor-pointer whitespace-nowrap">
+              <button onClick={() => window.open('/overview', '_blank')} className="text-left text-[#334155] dark:text-slate-300 hover:text-blue-600 transition-colors cursor-pointer whitespace-nowrap">
                 {language === 'bn' ? '• ওভারভিউ' : '• Overview'}
               </button>
-              <button onClick={() => onNavigate('flagship')} className="text-left text-[#334155] dark:text-slate-300 hover:text-blue-600 transition-colors cursor-pointer whitespace-nowrap">
+              <button onClick={() => window.open('/flagship', '_blank')} className="text-left text-[#334155] dark:text-slate-300 hover:text-blue-600 transition-colors cursor-pointer whitespace-nowrap">
                 {language === 'bn' ? '• আহার ক্যাম্পেইন' : '• Food Campaign'}
               </button>
-              <button onClick={() => onNavigate('dashboard')} className="text-left text-[#334155] dark:text-slate-300 hover:text-blue-600 transition-colors cursor-pointer whitespace-nowrap">
+              <button onClick={() => window.open('/dashboard', '_blank')} className="text-left text-[#334155] dark:text-slate-300 hover:text-blue-600 transition-colors cursor-pointer whitespace-nowrap">
                 {language === 'bn' ? '• পরিসংখ্যান' : '• Statistics'}
               </button>
-              <button onClick={() => onNavigate('pillars')} className="text-left text-[#334155] dark:text-slate-300 hover:text-blue-600 transition-colors cursor-pointer whitespace-nowrap">
+              <button onClick={() => window.open('/pillars', '_blank')} className="text-left text-[#334155] dark:text-slate-300 hover:text-blue-600 transition-colors cursor-pointer whitespace-nowrap">
                 {language === 'bn' ? '• সামাজিক স্তম্ভ' : '• Social Pillars'}
               </button>
             </div>
