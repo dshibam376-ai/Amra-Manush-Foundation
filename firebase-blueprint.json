@@ -1,0 +1,53 @@
+{
+  "collections": {
+    "gallery_posts": {
+      "id": {
+        "type": "string"
+      },
+      "isCustom": {
+        "type": "boolean"
+      },
+      "src": {
+        "type": "string"
+      },
+      "category": {
+        "type": "string"
+      },
+      "titleEn": {
+        "type": "string"
+      },
+      "titleBn": {
+        "type": "string"
+      },
+      "locationEn": {
+        "type": "string"
+      },
+      "locationBn": {
+        "type": "string"
+      },
+      "descriptionEn": {
+        "type": "string"
+      },
+      "descriptionBn": {
+        "type": "string"
+      },
+      "tagsEn": {
+        "type": "array",
+        "items": { "type": "string" }
+      },
+      "tagsBn": {
+        "type": "array",
+        "items": { "type": "string" }
+      },
+      "dateEn": {
+        "type": "string"
+      },
+      "dateBn": {
+        "type": "string"
+      },
+      "createdAt": {
+        "type": "timestamp"
+      }
+    }
+  }
+}

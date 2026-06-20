@@ -11,6 +11,8 @@ import {
 import { TrendingUp, CheckCircle, Flame, Target } from 'lucide-react';
 import { useLanguage } from '../../lib/LanguageContext';
 
+import AnimatedCounter from '../AnimatedCounter';
+
 export default function ImpactDashboard() {
   const { language } = useLanguage();
 
@@ -35,19 +37,19 @@ export default function ImpactDashboard() {
   const metrics = [
     { 
       label: language === 'bn' ? 'আহার বিতরণ' : 'Meals Distributed', 
-      val: toBnNo('1,540'), 
+      val: 1540, 
       pct: '+24%',
       trend: 'up' 
     },
     { 
       label: language === 'bn' ? 'শিশু সহায়তা' : 'Children Supported', 
-      val: toBnNo('125'), 
+      val: 125, 
       pct: '+18%',
       trend: 'up' 
     },
     { 
       label: language === 'bn' ? 'স্বেচ্ছাসেবী ঘন্টা' : 'Volunteer Hours', 
-      val: toBnNo('1,820'), 
+      val: 1820, 
       pct: '+35%',
       trend: 'up' 
     },
@@ -60,7 +62,9 @@ export default function ImpactDashboard() {
           <div key={i} className="bg-white dark:bg-[#1E293B] p-6 rounded-sm border border-slate-200 dark:border-slate-800 shadow-sm">
             <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">{m.label}</p>
             <div className="flex items-end justify-between">
-              <h4 className="text-3xl font-black text-[#0F172A] dark:text-white">{m.val}</h4>
+              <h4 className="text-3xl font-black text-[#0F172A] dark:text-white">
+                <AnimatedCounter value={m.val} language={language} />
+              </h4>
               <span className="text-xs font-bold text-emerald-600 bg-emerald-50 dark:bg-emerald-500/10 px-2 py-0.5 rounded flex items-center gap-1">
                 <TrendingUp className="h-3 w-3" /> {toBnNo(m.pct)}
               </span>

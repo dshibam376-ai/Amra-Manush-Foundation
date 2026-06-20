@@ -12,7 +12,7 @@ export default function Flagship({ onDonateClick }: FlagshipProps) {
   const [mealCount, setMealCount] = useState<number>(50);
   const [activeStoryIndex, setActiveStoryIndex] = useState(0);
   const [selectedFlyerIdx, setSelectedFlyerIdx] = useState<number | null>(null);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   // Meal support monetary config
   const mealCost = 40; // ₹40 per nutritious hot meal
@@ -23,14 +23,14 @@ export default function Flagship({ onDonateClick }: FlagshipProps) {
     {
       id: "flyer-1",
       title: "English Campaign Flyer (Official)",
-      subtitle: "Ekbelar Aahar Prospectus",
+      subtitle: language === 'bn' ? 'ক্যাম্পেইন বিবরণ' : "Campaign Prospectus",
       description: "Standard compliance flyer outlining the fundamental goals, government MSME enrollment details, and formal aid opportunities in English.",
       src: "/notice_banner_en_final.jpg"
     },
     {
       id: "flyer-2",
       title: "Bengali Campaign Flyer (Official)",
-      subtitle: "Ekbelar Aahar Abhiyan Flyer",
+      subtitle: language === 'bn' ? 'আহার অভিযান ফ্লায়ার' : "Meal Campaign Flyer",
       description: "The official West Bengal community notice board poster outlining local sub-kitchen centers, target nutrition indicators, and contacts.",
       src: "/notice_banner_bn_final.jpg"
     },
@@ -39,14 +39,14 @@ export default function Flagship({ onDonateClick }: FlagshipProps) {
       title: "Grassroots Announcement (Bangla)",
       subtitle: "Neighborhood Outreach Bulletin",
       description: "Local campaign extended banner detailing sub-kitchen center shifts, nutritional schedules, and rural coordinator maps.",
-      src: "/notice_banner_bn_1781521020066.jpg"
+      src: "/notice_banner_bn_rural.jpg"
     },
     {
       id: "flyer-4",
       title: "Ekbelar Aahar Standard Notice",
       subtitle: "Core Campaign Banner",
       description: "Primary distribution-center notice board banner displayed permanently in our kitchens across Sreerampore and Hindmotor.",
-      src: "/notice_banner_1781514504810.jpg"
+      src: "/notice_banner_standard.jpg"
     }
   ];
 
@@ -109,12 +109,12 @@ export default function Flagship({ onDonateClick }: FlagshipProps) {
             </div>
             
             <h3 className="font-display font-medium text-2xl sm:text-3xl text-[#1E293B] dark:text-white tracking-tight leading-snug mb-6">
-              Nourishing Bodies, Sowing Hope, Safeguarding Human Dignity
+              {language === 'bn' ? 'অসহায়দের খাদ্য ও পুষ্টি নিরাপত্তা নিশ্চিত করা' : 'Nourishing Bodies, Sowing Hope, Safeguarding Human Dignity'}
             </h3>
             
             <div className="space-y-4 text-[#334155] dark:text-slate-300 font-sans leading-relaxed text-sm sm:text-base mb-8">
               <p>
-                <strong>Ekbelar Aahar Abhiyan</strong> is our cornerstone humanitarian pledge targeting the absolute eradication of pediatric stunting and acute food crisis among marginalized communities in West Bengal.
+                <strong>{t('nav.flagship')}</strong> {language === 'bn' ? 'হল আমাদের মূল মানবিক অঙ্গীকার যার লক্ষ্য সুবিধাবঞ্চিত সম্প্রদায়ের মধ্যে পুষ্টির অভাব এবং তীব্র খাদ্য সংকট দূর করা।' : 'is our cornerstone humanitarian pledge targeting the absolute eradication of pediatric stunting and acute food crisis among marginalized communities.'}
               </p>
               <p>
                 A meal is not just basic fuel—it is the direct catalyst for developmental growth. When a child has food security, they can focus on classroom reading. When a disabled adult has a hot lunch guaranteed, they can direct energy towards learning a craft. 
@@ -337,7 +337,7 @@ export default function Flagship({ onDonateClick }: FlagshipProps) {
               Campaign Bulletins & Notices
             </span>
             <h3 className="font-display font-bold text-2xl sm:text-3xl text-[#1E293B] dark:text-white mt-4">
-              Ekbelar Aahar Official Flyers
+              {language === 'bn' ? 'অফিসিয়াল ক্যাম্পেইন ফ্লায়ার' : 'Official Campaign Flyers'}
             </h3>
             <p className="text-xs sm:text-sm text-[#64748B] dark:text-slate-400 font-sans leading-relaxed mt-2 text-balance">
               Access the official flyers and local sub-kitchen circulars detailing verified credentials, registration procedures, and contacts. Click any banner to open the high-resolution reader.

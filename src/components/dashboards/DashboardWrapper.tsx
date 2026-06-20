@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { ChevronLeft, RefreshCcw, Globe, Shield, ExternalLink, MoreVertical } from 'lucide-react';
+import { ChevronLeft, RefreshCcw, Scroll, Shield, ExternalLink, MoreVertical } from 'lucide-react';
 import { useLanguage } from '../../lib/LanguageContext';
 
 interface DashboardWrapperProps {
@@ -12,6 +12,7 @@ interface DashboardWrapperProps {
 
 export default function DashboardWrapper({ children, subdomain, onBack, title }: DashboardWrapperProps) {
   const { language } = useLanguage();
+  const [isScrollable, setIsScrollable] = useState(true);
 
   return (
     <div className="bg-[#F8FAFC] dark:bg-[#0F172A] min-h-[70vh] rounded-sm border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden animate-in zoom-in-95 duration-500">
@@ -51,6 +52,13 @@ export default function DashboardWrapper({ children, subdomain, onBack, title }:
         </div>
 
         <div className="hidden lg:flex items-center gap-3 ml-2">
+          <button
+            onClick={() => setIsScrollable(!isScrollable)}
+            className={`p-2 rounded-full transition-colors cursor-pointer ${isScrollable ? 'bg-blue-100 text-blue-700' : 'bg-slate-100 text-slate-500'}`}
+            title={isScrollable ? "Disable Scroll" : "Enable Scroll"}
+          >
+            <Scroll className="h-4 w-4" />
+          </button>
           <div className="text-right">
             <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{language === 'bn' ? 'সিস্টেম স্ট্যাটাস' : 'System Status'}</p>
             <p className="text-xs font-mono font-bold text-emerald-600">ONLINE_AUDIT_V4.2</p>
@@ -70,7 +78,7 @@ export default function DashboardWrapper({ children, subdomain, onBack, title }:
       </div>
 
       {/* Content scroll area */}
-      <div className="p-8 pt-4">
+      <div className={`p-8 pt-4 max-h-[60vh] ${isScrollable ? 'overflow-y-auto' : 'overflow-hidden'} [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-slate-300 dark:[&::-webkit-scrollbar-thumb]:bg-slate-700`}>
         {children}
       </div>
     </div>

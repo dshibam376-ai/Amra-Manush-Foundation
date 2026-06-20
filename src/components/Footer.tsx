@@ -11,7 +11,7 @@ interface FooterProps {
 
 export default function Footer({ onNavigate }: FooterProps) {
   const currentYear = new Date().getFullYear();
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
@@ -20,10 +20,8 @@ export default function Footer({ onNavigate }: FooterProps) {
 
   const handleFooterNav = (id: string) => {
     const path = id === 'hero' ? '/' : `/${id}`;
-    if (location.pathname !== path) {
-      navigate(path);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    navigate(path);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const toBnNo = (numStr: string) => {
@@ -111,11 +109,11 @@ export default function Footer({ onNavigate }: FooterProps) {
               {language === 'bn' ? 'ন্যাভিগেশন' : 'Navigation'}
             </h4>
             <div className="grid grid-cols-1 gap-2.5 text-xs">
-              <button onClick={() => handleFooterNav('overview')} className="text-left text-[#334155] dark:text-slate-300 hover:text-blue-600 transition-colors cursor-pointer whitespace-nowrap">
-                {language === 'bn' ? '• ওভারভিউ' : '• Overview'}
+              <button onClick={() => handleFooterNav('about')} className="text-left text-[#334155] dark:text-slate-300 hover:text-blue-600 transition-colors cursor-pointer whitespace-nowrap">
+                • {t('nav.about')}
               </button>
               <button onClick={() => handleFooterNav('flagship')} className="text-left text-[#334155] dark:text-slate-300 hover:text-blue-600 transition-colors cursor-pointer whitespace-nowrap">
-                {language === 'bn' ? '• আহার ক্যাম্পেইন' : '• Food Campaign'}
+                {language === 'bn' ? '• একবেলার আহার' : '• Food Campaign'}
               </button>
               <button onClick={() => handleFooterNav('dashboard')} className="text-left text-[#334155] dark:text-slate-300 hover:text-blue-600 transition-colors cursor-pointer whitespace-nowrap">
                 {language === 'bn' ? '• পরিসংখ্যান' : '• Statistics'}

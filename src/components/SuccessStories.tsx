@@ -56,7 +56,7 @@ export default function SuccessStories() {
   const author = trans ? trans.author : activeStory.author;
 
   return (
-    <section id="stories" className="py-24 relative overflow-hidden">
+    <section className="py-24 relative overflow-hidden">
       {/* Background visual graphics */}
       <div className="absolute top-1/2 left-0 w-80 h-80 rounded-full bg-blue-600/5 dark:bg-cyan-400/10 blur-3xl pointer-events-none" />
 

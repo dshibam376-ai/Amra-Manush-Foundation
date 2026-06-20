@@ -46,9 +46,12 @@ export interface SuccessStory {
 export interface GalleryItem {
   id: string;
   src: string;
-  category: 'food' | 'children' | 'volunteer' | 'community' | 'events';
+  category: string;
   title: string;
   description: string;
+  date?: string;
+  tags?: string[];
+  location?: string;
 }
 
 export interface ReportItem {

@@ -15,9 +15,10 @@ interface HeaderProps {
   activeSection: string;
   language: 'en' | 'bn';
   setLanguage: (lang: 'en' | 'bn') => void;
+  isStandalone?: boolean;
 }
 
-export default function Header({ onNavigate, activeSection, language, setLanguage }: HeaderProps) {
+export default function Header({ onNavigate, activeSection, language, setLanguage, isStandalone }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -40,27 +41,24 @@ export default function Header({ onNavigate, activeSection, language, setLanguag
   }, []);
 
   const navItems = [
-    { id: 'overview', label: t('nav.overview') },
-    { id: 'members', label: t('nav.members') },
+    { id: 'about', label: t('nav.about') },
     { id: 'flagship', label: t('nav.flagship') },
-    { id: 'dashboard', label: t('nav.dashboard') },
-    { id: 'pillars', label: t('nav.pillars') },
-    { id: 'stories', label: t('nav.stories') },
+    { id: 'dashboard-pillars', label: t('nav.dashboard_pillars') },
     { id: 'partnerships', label: t('nav.partnerships') },
-    { id: 'transparency', label: t('nav.transparency') },
-    { id: 'gallery', label: t('nav.media') },
+    { id: 'gallery', label: t('nav.stories_media') },
   ];
 
   const handleNavClick = (id: string) => {
     const path = id === 'hero' ? '/' : `/${id}`;
-    if (location.pathname !== path) {
-      navigate(path);
+    navigate(path);
+    if (path === location.pathname) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     setIsOpen(false);
   };
 
   return (
-    <div className="fixed top-0 left-0 w-full z-50 flex flex-col">
+    <div className={`fixed ${isStandalone ? 'top-[64px]' : 'top-0'} left-0 w-full z-50 flex flex-col`}>
       {/* Utility / Accessibility Bar (Govt Style) */}
       <div className="bg-[#050B16] border-b border-white/5 py-1 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="max-w-7xl mx-auto flex items-center justify-between text-[10px] font-mono tracking-wider uppercase">
@@ -193,7 +191,7 @@ export default function Header({ onNavigate, activeSection, language, setLanguag
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search pillars, stories..."
+                    placeholder="Search pillars, gallery..."
                     className="w-full px-3 py-2 bg-[#0B1528] border border-white/10 rounded-md text-white text-sm focus:outline-none focus:border-amber-400/40 transition-colors"
                   />
                 </div>

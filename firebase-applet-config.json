@@ -3,6 +3,7 @@
   "appId": "1:302435187126:web:df1f612b5e36da8452a917",
   "apiKey": "AIzaSyAYHbJF6N6k2FDKhz4X2Oo9HuSpQpssVas",
   "authDomain": "sharp-portfolio-j71nt.firebaseapp.com",
+  "firestoreDatabaseId": "ai-studio-d005a09a-7901-46be-9404-4d10e0cc19f1",
   "storageBucket": "sharp-portfolio-j71nt.firebasestorage.app",
   "messagingSenderId": "302435187126",
   "measurementId": ""

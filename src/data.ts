@@ -250,16 +250,44 @@ export const GALLERY_ITEMS: GalleryItem[] = [
   {
     id: 'gal-9',
     category: 'food',
-    src: '/notice_banner_bn_1781521020066.jpg',
+    src: '/notice_banner_bn_rural.jpg',
     title: 'Campaign Announcement (Bangla Version)',
     description: 'Promotional bulletin for our grassroots network announcing local hub kitchen extensions and schedule maps.'
   },
   {
     id: 'gal-10',
     category: 'food',
-    src: '/notice_banner_1781514504810.jpg',
+    src: '/notice_banner_standard.jpg',
     title: 'Ekbelar Aahar Standard Notice',
     description: 'The primary offline banner utilized throughout target sub-kitchens and centers across Sreerampore and Hindmotor.'
+  },
+  {
+    id: 'gal-11',
+    category: 'food',
+    src: '/anjali.jpg',
+    title: 'Lead Chef Anjali Mondal (Ekbelar Aahar)',
+    description: 'Anjali Mondal, lead chef under our Ekbelar Aahar Abhiyan, preparing highly nutritious, balanced micro-nutrient heavy meals daily in Hindmotor.'
+  },
+  {
+    id: 'gal-12',
+    category: 'food',
+    src: '/prabhas.jpg',
+    title: 'Health and Nutrition for Dada Prabhas Roy',
+    description: 'Dada Prabhas, 74, receiving standard medical supervision and warm daily meals at our Sreerampore distribution center.'
+  },
+  {
+    id: 'gal-13',
+    category: 'children',
+    src: '/rahul.jpg',
+    title: 'Education Integration for Rahul Bauri',
+    description: 'Rahul, 9, smiling with his sponsored school-kit, uniform, and books at Hindmotor Primary after transitioning from hard brick-kiln labor.'
+  },
+  {
+    id: 'gal-14',
+    category: 'community',
+    src: '/sunita.jpg',
+    title: 'Micro-Enterprise Setup for Sunita',
+    description: 'Sunita Das, 19, riding her custom-engineered hand-cranked tricycle which has enabled her path to economic dignity and independence.'
   }
 ];
 

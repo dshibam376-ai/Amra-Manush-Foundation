@@ -29,10 +29,7 @@ export default function SectionLayout({ children, title, subdomain }: SectionLay
         <div className="max-w-7xl mx-auto flex items-center justify-between">
            <div className="flex items-center gap-3">
              <button 
-                onClick={() => {
-                  window.close();
-                  navigate('/');
-                }}
+                onClick={() => navigate('/')}
                 className="p-1.5 hover:bg-white/10 rounded-full transition-colors text-slate-400"
                 title="Go Back"
              >
@@ -66,17 +63,16 @@ export default function SectionLayout({ children, title, subdomain }: SectionLay
         </div>
       </div>
 
-      {/* Main Site Header integrated into standalone page */}
-      <div className="sticky top-[45px] z-[60]">
-        <Header 
-          onNavigate={(id) => navigate(id === 'hero' ? '/' : `/${id}`)} 
-          activeSection={subdomain} 
-          language={language} 
-          setLanguage={setLanguage} 
-        />
-      </div>
+      {/* Main Site Header - Rendered at top of sub-page content */}
+      <Header 
+        onNavigate={(id) => navigate(id === 'hero' ? '/' : `/${id}`)} 
+        activeSection={subdomain} 
+        language={language} 
+        setLanguage={setLanguage} 
+        isStandalone={true}
+      />
 
-      <div className="flex-grow pt-8">
+      <div className="flex-grow pt-44">
         {/* We reuse the branding at the top of the standalone page */}
         <div className="bg-white dark:bg-[#0B1528] border-b border-slate-200 dark:border-slate-800 py-8 px-6 text-center">
             <h1 className="font-display font-black text-3xl sm:text-4xl text-[#0F172A] dark:text-white tracking-tighter uppercase mb-2">

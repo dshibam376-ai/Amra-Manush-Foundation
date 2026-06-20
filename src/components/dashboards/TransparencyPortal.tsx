@@ -3,6 +3,8 @@ import { motion } from 'motion/react';
 import { PieChart, ShieldCheck, FileText, Download } from 'lucide-react';
 import { useLanguage } from '../../lib/LanguageContext';
 
+import AnimatedCounter from '../AnimatedCounter';
+
 export default function TransparencyPortal() {
   const { language } = useLanguage();
 
@@ -54,7 +56,7 @@ export default function TransparencyPortal() {
                     <span className="text-xs font-bold text-slate-600 dark:text-slate-300">{d.label}</span>
                   </div>
                   <span className="font-mono text-xs font-black text-[#0F172A] dark:text-white bg-slate-50 dark:bg-slate-800 px-2 py-0.5 rounded border border-slate-100 dark:border-slate-800">
-                    {toBnNo(d.val.toString())}%
+                    <AnimatedCounter value={d.val} language={language} />%
                   </span>
                 </div>
               ))}

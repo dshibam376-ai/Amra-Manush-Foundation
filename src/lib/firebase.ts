@@ -1,64 +1,62 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, User } from 'firebase/auth';
-import firebaseConfig from '../../firebase-applet-config.json';
+import { getFirestore } from 'firebase/firestore';
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged, User } from 'firebase/auth';
+import { getStorage } from 'firebase/storage';
 
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-
-const provider = new GoogleAuthProvider();
-// Request Workspace scopes
-provider.addScope('https://www.googleapis.com/auth/drive');
-
-// Flag to indicate if we are in the middle of a sign-in flow.
-let isSigningIn = false;
-// Cache the access token in memory.
-let cachedAccessToken: string | null = null;
-
-// Initialize auth state listener. Call this on app load.
-export const initAuth = (
-  onAuthSuccess?: (user: User, token: string) => void,
-  onAuthFailure?: () => void
-) => {
-  return onAuthStateChanged(auth, async (user: User | null) => {
-    if (user) {
-      if (cachedAccessToken) {
-        if (onAuthSuccess) onAuthSuccess(user, cachedAccessToken);
-      } else if (!isSigningIn) {
-        cachedAccessToken = null;
-        if (onAuthFailure) onAuthFailure();
-      }
-    } else {
-      cachedAccessToken = null;
-      if (onAuthFailure) onAuthFailure();
-    }
-  });
+const firebaseConfig = {
+  apiKey: "AIzaSyAYHbJF6N6k2FDKhz4X2Oo9HuSpQpssVas",
+  authDomain: "sharp-portfolio-j71nt.firebaseapp.com",
+  projectId: "sharp-portfolio-j71nt",
+  storageBucket: "sharp-portfolio-j71nt.firebasestorage.app",
+  messagingSenderId: "302435187126",
+  appId: "1:302435187126:web:df1f612b5e36da8452a917",
+  measurementId: ""
 };
 
-// Must be called from a button click or user interaction
-export const googleSignIn = async (): Promise<{ user: User; accessToken: string } | null> => {
+const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
+export const auth = getAuth(app);
+export const storage = getStorage(app);
+
+const provider = new GoogleAuthProvider();
+provider.addScope('https://www.googleapis.com/auth/drive.file');
+provider.addScope('https://www.googleapis.com/auth/drive.readonly');
+
+export const googleSignIn = async () => {
   try {
-    isSigningIn = true;
     const result = await signInWithPopup(auth, provider);
     const credential = GoogleAuthProvider.credentialFromResult(result);
-    if (!credential?.accessToken) {
-      throw new Error('Failed to get access token from Firebase Auth');
+    const accessToken = credential?.accessToken || null;
+    if (accessToken) {
+      sessionStorage.setItem('GOOGLE_DRIVE_ACCESS_TOKEN', accessToken);
     }
-
-    cachedAccessToken = credential.accessToken;
-    return { user: result.user, accessToken: cachedAccessToken };
-  } catch (error: any) {
-    console.error('Sign in error:', error);
+    // Return custom object to match what component expects
+    return { 
+      user: result.user, 
+      accessToken: accessToken 
+    };
+  } catch (error) {
+    console.error("Error during Google login:", error);
     throw error;
-  } finally {
-    isSigningIn = false;
   }
 };
 
-export const getAccessToken = async (): Promise<string | null> => {
-  return cachedAccessToken;
+export const logout = async () => {
+  await signOut(auth);
+  sessionStorage.removeItem('GOOGLE_DRIVE_ACCESS_TOKEN');
 };
 
-export const logout = async () => {
-  await auth.signOut();
-  cachedAccessToken = null;
+export const getAccessToken = () => {
+  return sessionStorage.getItem('GOOGLE_DRIVE_ACCESS_TOKEN');
+};
+
+export const initAuth = (success: (user: User | null, token: string | null) => void, failure: () => void) => {
+  return onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const token = sessionStorage.getItem('GOOGLE_DRIVE_ACCESS_TOKEN');
+      success(user, token);
+    } else {
+      failure();
+    }
+  });
 };

@@ -14,15 +14,18 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 const translations: Record<Language, Record<string, string>> = {
   en: {
     // Nav Items
+    'nav.about': 'About Us',
     'nav.overview': 'Who We Are',
     'nav.members': 'Trust Members',
-    'nav.flagship': 'Ekbelar Aahar',
+    'nav.flagship': 'Upcoming Events',
+    'nav.dashboard_pillars': 'Dashboard & Pillars',
     'nav.dashboard': 'Impact Dashboard',
     'nav.pillars': 'Our Pillars',
     'nav.stories': 'Success Stories',
     'nav.partnerships': 'CSR Partnerships',
     'nav.transparency': 'Transparency',
     'nav.media': 'Media',
+    'nav.stories_media': 'Gallery',
     'nav.volunteer': 'Volunteer',
     'nav.donate': 'Donate Now',
     'nav.contact': 'Contact Us',
@@ -65,8 +68,8 @@ const translations: Record<Language, Record<string, string>> = {
     'banner.serving': 'Serving Humanity, Spreading Smiles',
 
     // Overview Section
-    'overview.title': 'Our Purpose & Milestones',
-    'overview.subtitle': 'We exist to uplift the distressed and forgotten citizens through methodical care, hot meals, and long-term socio-economic interventions.',
+    'overview.title': 'Trust Purpose & Milestones',
+    'overview.subtitle': 'About Us: We exist to uplift the distressed and forgotten citizens through methodical care and long-term socio-economic interventions.',
     'overview.timeline_title': 'The Amra Manush Journey',
     'overview.timeline_subtitle': 'Key milestones of execution',
 
@@ -77,8 +80,8 @@ const translations: Record<Language, Record<string, string>> = {
     'members.contact_now': 'Contact Now',
 
     // Flagship Component
-    'flagship.title': 'Ekbelar Aahar Abhiyan',
-    'flagship.subtitle': 'Our flagship food preservation and delivery system aiming to wipe out hunger for needy footpath seniors, slum children, and families.',
+    'flagship.title': 'Upcoming Food Distribution Events',
+    'flagship.subtitle': 'Our flagship monthly food preservation and delivery campaigns for needy seniors and slum children.',
     'flagship.primary_goal': 'Eliminate Hunger',
     'flagship.nutrition_guaranteed': 'Micro-nutrients & quality guaranteed hot food.',
 
@@ -225,15 +228,18 @@ const translations: Record<Language, Record<string, string>> = {
   },
   bn: {
     // Nav Items
+    'nav.about': 'আমাদের সম্পর্কে',
     'nav.overview': 'আমরা কে',
     'nav.members': 'ট্রাস্ট মেম্বারগণ',
-    'nav.flagship': 'একবেলার আহার',
+    'nav.flagship': 'আগামী ইভেন্টসমূহ',
+    'nav.dashboard_pillars': 'ড্যাশবোর্ড ও স্তম্ভসমূহ',
     'nav.dashboard': 'প্রভাব ড্যাশবোর্ড',
     'nav.pillars': 'আমাদের স্তম্ভসমূহ',
     'nav.stories': 'সাফল্যের গল্প',
     'nav.partnerships': 'CSR পার্টনারশিপ',
     'nav.transparency': 'স্বচ্ছতা',
     'nav.media': 'মিডিয়া',
+    'nav.stories_media': 'গ্যালারি',
     'nav.volunteer': 'স্বেচ্ছাসেবক',
     'nav.donate': 'দান করুন',
     'nav.contact': 'যোগাযোগ করুন',
@@ -276,8 +282,8 @@ const translations: Record<Language, Record<string, string>> = {
     'banner.serving': 'মানবতার সেবা, মুখে হাসি ফোটানো',
 
     // Overview Section
-    'overview.title': 'আমাদের উদ্দেশ্য ও অর্জিত মাইলফলক',
-    'overview.subtitle': 'আমরা পদ্ধতিগত সেবা, পুষ্টিকর খাবার এবং দীর্ঘমেয়াদি আর্থ-সামাজিক পদক্ষেপের মাধ্যমে সুবিধাবঞ্চিত ও অবহেলিত নাগরিকদের পাশে দাঁড়িয়েছি।',
+    'overview.title': 'ট্রাস্টের উদ্দেশ্য ও অর্জিত মাইলফলক',
+    'overview.subtitle': 'আমাদের সম্পর্কে: আমরা পদ্ধতিগত সেবা এবং দীর্ঘমেয়াদি আর্থ-সামাজিক পদক্ষেপের মাধ্যমে সুবিধাবঞ্চিত ও অবহেলিত নাগরিকদের পাশে দাঁড়িয়েছি।',
     'overview.timeline_title': 'আমরা মানুষের পথচলা',
     'overview.timeline_subtitle': 'আমাদের কাজের গুরুত্বপূর্ণ মাইলফলক',
 
@@ -288,8 +294,8 @@ const translations: Record<Language, Record<string, string>> = {
     'members.contact_now': 'যোগাযোগ করুন',
 
     // Flagship Component
-    'flagship.title': 'একবেলার আহার অভিযান',
-    'flagship.subtitle': 'আমাদের প্রধান খাদ্য সংরক্ষণ ও বণ্টন ব্যবস্থা যার লক্ষ্য অসহায় প্রবীণ ব্যক্তি, বস্তির শিশু এবং অভাবী পরিবারের ক্ষুধা দূর করা।',
+    'flagship.title': 'আগামী আহার বিতরণ ইভেন্টসমূহ',
+    'flagship.subtitle': 'অসহায় প্রবীণ ব্যক্তি এবং বস্তির শিশুদের জন্য আমাদের প্রধান মাসিক খাদ্য বণ্টন এবং আহার অভিযানসমূহ।',
     'flagship.primary_goal': 'ক্ষুধা নির্মূল',
     'flagship.nutrition_guaranteed': 'পুষ্টিকর উপাদান ও গুণমান নিশ্চিত করা গরম খাবার।',
 

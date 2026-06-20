@@ -27,10 +27,11 @@ function LandingPage() {
   const navigate = useNavigate();
 
   const handleNavigate = (sectionId: string) => {
+    const targetId = sectionId === 'about' ? 'overview' : sectionId;
     setActiveSection(sectionId);
     
     setTimeout(() => {
-      const element = document.getElementById(sectionId);
+      const element = document.getElementById(targetId);
       if (element) {
         const headerOffset = 80;
         const elementPosition = element.getBoundingClientRect().top + window.scrollY;
@@ -46,8 +47,8 @@ function LandingPage() {
 
   useEffect(() => {
     const sections = [
-      'hero', 'overview', 'members', 'flagship', 'dashboard', 'pillars', 
-      'stories', 'partnerships', 'transparency', 'gallery', 'volunteer', 'donate', 'contact'
+      'hero', 'about', 'members', 'flagship', 'dashboard-pillars', 
+      'gallery', 'partnerships', 'volunteer', 'donate', 'contact'
     ];
 
     const handleScroll = () => {
@@ -58,7 +59,8 @@ function LandingPage() {
           const top = el.offsetTop;
           const height = el.offsetHeight;
           if (scrollPos >= top && scrollPos < top + height) {
-            setActiveSection(section);
+            const mappedSection = (section === 'overview' || section === 'members') ? 'about' : section;
+            setActiveSection(mappedSection);
             break;
           }
         }
@@ -74,16 +76,20 @@ function LandingPage() {
       <Header onNavigate={handleNavigate} activeSection={activeSection} language={language} setLanguage={setLanguage} />
       <main id="main-content" className="flex-grow">
         <Hero onNavigate={handleNavigate} />
-        <div id="overview"><Overview /></div>
+        <div id="about"><Overview /></div>
         <div id="members"><Members /></div>
         <div id="flagship"><Flagship onDonateClick={() => handleNavigate('donate')} /></div>
-        <div id="dashboard"><Dashboard /></div>
-        <div id="pillars"><Pillars /></div>
-        <div id="stories"><SuccessStories /></div>
+        <div id="dashboard-pillars" className="space-y-0">
+          <Dashboard />
+          <Pillars />
+          <Transparency />
+        </div>
+        <div id="gallery">
+          <SuccessStories />
+          <Gallery />
+        </div>
         <div id="partnerships"><Partnerships /></div>
-        <div id="transparency"><Transparency /></div>
         <div id="faq" className="max-w-7xl mx-auto px-4 sm:px-6 mb-12"><FAQSection /></div>
-        <div id="gallery"><Gallery /></div>
         <div id="volunteer"><Volunteer /></div>
         <div id="donate"><Donation /></div>
         <div id="contact"><Contact /></div>
@@ -104,57 +110,39 @@ export default function App() {
       <Route path="/" element={<LandingPage />} />
       
       {/* Standalone Subdomain Pages */}
-      <Route path="/overview" element={
-        <SectionLayout title={language === 'bn' ? 'ফাউন্ডেশন পরিচিতি' : 'Foundation Overview'} subdomain="who">
+      <Route path="/about" element={
+        <SectionLayout title={language === 'bn' ? 'আমাদের সম্পর্কে' : 'About Us'} subdomain="about">
           <Overview />
+          <div className="mt-12 pt-12 border-t border-slate-200 dark:border-slate-800">
+            <Members />
+          </div>
         </SectionLayout>
       } />
       
-      <Route path="/members" element={
-        <SectionLayout title={language === 'bn' ? 'ফাউন্ডেশন সদস্য' : 'Foundation Members'} subdomain="trustees">
-          <Members />
-        </SectionLayout>
-      } />
-
       <Route path="/flagship" element={
-        <SectionLayout title={language === 'bn' ? 'একবেলার আহার' : 'Ekbelar Aahar'} subdomain="hunger-relief">
+        <SectionLayout title={language === 'bn' ? 'আগামী ইভেন্টসমূহ' : 'Upcoming Events'} subdomain="events">
           <Flagship onDonateClick={() => navigate('/donate')} />
         </SectionLayout>
       } />
 
-      <Route path="/dashboard" element={
-        <SectionLayout title={language === 'bn' ? 'ইমপ্যাক্ট ড্যাশবোর্ড' : 'Impact Dashboard'} subdomain="metrics">
+      <Route path="/dashboard-pillars" element={
+        <SectionLayout title={language === 'bn' ? 'ড্যাশবোর্ড ও স্তম্ভসমূহ' : 'Dashboard & Pillars'} subdomain="dashboard-pillars">
           <Dashboard />
-        </SectionLayout>
-      } />
-
-      <Route path="/pillars" element={
-        <SectionLayout title={language === 'bn' ? 'সেবা ক্ষেত্রসমূহ' : 'Service Pillars'} subdomain="pillars">
           <Pillars />
+          <Transparency />
         </SectionLayout>
       } />
 
-      <Route path="/stories" element={
-        <SectionLayout title={language === 'bn' ? 'সাফল্যের কাহিনী' : 'Success Stories'} subdomain="stories">
+      <Route path="/gallery" element={
+        <SectionLayout title={language === 'bn' ? 'গ্যালারি' : 'Gallery'} subdomain="gallery">
           <SuccessStories />
+          <Gallery />
         </SectionLayout>
       } />
 
       <Route path="/partnerships" element={
         <SectionLayout title={language === 'bn' ? 'অংশীদারিত্ব' : 'Partnerships'} subdomain="csr">
           <Partnerships />
-        </SectionLayout>
-      } />
-
-      <Route path="/transparency" element={
-        <SectionLayout title={language === 'bn' ? 'স্বচ্ছতা ও সুশাসন' : 'Transparency & Governance'} subdomain="governance">
-          <Transparency />
-        </SectionLayout>
-      } />
-
-      <Route path="/gallery" element={
-        <SectionLayout title={language === 'bn' ? 'মিডিয়া গ্যালারি' : 'Media Gallery'} subdomain="media">
-          <Gallery />
         </SectionLayout>
       } />
 

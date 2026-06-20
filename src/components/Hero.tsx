@@ -23,7 +23,8 @@ export default function Hero({ onNavigate }: HeroProps) {
   const navigate = useNavigate();
 
   const handleHeroNav = (id: string) => {
-    navigate(`/${id}`);
+    const path = id === 'hero' ? '/' : `/${id}`;
+    navigate(path);
   };
 
   return (
